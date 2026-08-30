@@ -8,10 +8,10 @@ export PATH LC_ALL LANG
 
 SERVICE_NAME="hcr-server"
 SYSTEMD_DIR="/etc/systemd/system"
-PORT="8080"
+PORT="8989"
 PORT_SET="false"
-MAX_DOWNLOAD_FRAME="8192"
-DOWNLOAD_POLL_TIMEOUT="2s"
+MAX_DOWNLOAD_FRAME="15"
+DOWNLOAD_POLL_TIMEOUT="3s"
 TRANSPORT="auto"
 TRANSPORT_SET="false"
 ACTION="install"
@@ -42,7 +42,7 @@ Usage:
   ./install.sh --help
 
 Options:
-  --port <number>     Listener port. Default: 8080
+  --port <number>     Listener port. Default: 8989
   --transport <mode>  Server transport. Default: auto
                       tls   accepts TLS only
                       plain accepts non-TLS HCR only
@@ -247,8 +247,8 @@ Description=HCR relay
 Documentation=file:${SCRIPT_DIR}/README.md
 Wants=network-online.target
 After=network-online.target ssh.service sshd.service
-StartLimitIntervalSec=30
-StartLimitBurst=3
+StartLimitIntervalSec=120
+StartLimitBurst=7
 
 [Service]
 Type=exec
